@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://trellocdn.com">
+    <script src="https://trellocdn.com"></script>
+  </head>
+  <body style="padding: 10px;">
+    <div id="create-view">
+      <input type="text" id="ticket-title" placeholder="Enter ticket issue..." style="width:100%; margin-bottom:10px;">
+      <button id="btn-create" class="mod-primary" style="width:100%;">Create Open Ticket</button>
+    </div>
+    
+    <div id="manage-view" style="display:none;">
+      <p><strong>Status:</strong> <span style="color:red;">OPEN</span></p>
+      <p id="display-title"></p>
+      <button id="btn-close" style="width:100%; background-color:#eb5a46; color:white;">Close Ticket</button>
+    </div>
+
+    <script>
+      var t = TrelloPowerUp.iframe();
+      
+      t.get('card', 'shared', 'ticket').then(function(ticket) {
+        if (ticket && ticket.status === 'open') {
+          document.getElementById('create-view').style.display = 'none';
+          document.getElementById('manage-view').style.display = 'block';
+          document.getElementById('display-title').innerText = ticket.title;
+        }
+      });
+
+      document.getElementById('btn-create').addEventListener('click', function() {
+        var title = document.getElementById('ticket-title').value || 'Unassigned Issue';
+        t.set('card', 'shared', 'ticket', { title: title, status: 'open' })
+        .then(function() { t.closePopup(); });
+      });
+
+      document.getElementById('btn-close').addEventListener('click', function() {
+        t.set('card', 'shared', 'ticket', { status: 'closed' })
+        .then(function() { t.closePopup(); });
+      });
+    </script>
+  </body>
+</html>
