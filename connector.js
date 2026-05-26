@@ -1,10 +1,7 @@
-var GRAY_ICON = 'https://hyperdev.com';
-
 TrelloPowerUp.initialize({
   'card-buttons': function(t, options) {
     return [{
-      icon: GRAY_ICON,
-      text: 'Help Desk Ticket',
+      text: 'HELP DESK TICKET',
       callback: function(t) {
         return t.popup({
           title: 'Ticket Manager',
@@ -30,8 +27,7 @@ TrelloPowerUp.initialize({
 
   'board-buttons': function(t, options) {
     return [{
-      icon: GRAY_ICON,
-      text: 'Open Tickets Dashboard',
+      text: 'OPEN TICKETS DASHBOARD',
       callback: function(t) {
         return t.modal({
           title: 'All Active Help Desk Tickets',
