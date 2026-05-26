@@ -1,0 +1,12 @@
+{
+  "name": "Help Desk Power-Up",
+  "id": "help-desk-power-up",
+  "search": {
+    "privacy": "public"
+  },
+  "capabilities": [
+    "card-buttons",
+    "card-badges",
+    "board-buttons"
+  ]
+}
